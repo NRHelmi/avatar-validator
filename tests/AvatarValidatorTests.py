@@ -13,6 +13,15 @@ class TestAvatarValidator(unittest.TestCase):
         self.assertFalse(validator.validate_size())
         self.assertTrue(validator.close())
 
+    def test_validate_transparency(self):
+        validator = AvatarValidator("./tests/data/right_transparency_avatar.png")
+        self.assertTrue(validator.validate_transparency())
+        self.assertTrue(validator.close())
+
+        validator = AvatarValidator("./tests/data/bad_transparency_avatar.png")
+        self.assertFalse(validator.validate_transparency())
+        self.assertTrue(validator.close())
+
 
 if __name__ == "__main__":
     unittest.main()
