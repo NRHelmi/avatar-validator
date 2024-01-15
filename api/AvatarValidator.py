@@ -15,10 +15,9 @@ class AvatarValidator(AvatarValidatorAbstract):
 
     # validate that the non transpared
     # pixels are within a circle
-    def validate_transparency(self):
+    def validate_transparency(self, radius: int = 100):
         center_x = self.img.width // 2
         center_y = self.img.height // 2
-        radius = 100  # 1 < radius < 256
 
         def is_pixel_in_circle(
             x: int, y: int, center_x: int, center_y: int, radius: int
