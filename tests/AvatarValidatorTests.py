@@ -22,6 +22,15 @@ class TestAvatarValidator(unittest.TestCase):
         self.assertFalse(validator.validate_transparency())
         self.assertTrue(validator.close())
 
+    def test_validate_happiness(self):
+        validator = AvatarValidator("./tests/data/happy_colored_avatar.png")
+        self.assertTrue(validator.validate_hapiness())
+        self.assertTrue(validator.close())
+
+        validator = AvatarValidator("./tests/data/sad_colored_avatar.png")
+        self.assertFalse(validator.validate_hapiness())
+        self.assertTrue(validator.close())
+
 
 if __name__ == "__main__":
     unittest.main()

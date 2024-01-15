@@ -33,8 +33,28 @@ class AvatarValidator(AvatarValidatorAbstract):
                         return False
         return True
 
-    def validate_hapiness(self):
-        return super().validate_hapiness()
+    def validate_hapiness(
+        self,
+        red_threshold: int = 100,
+        green_threshold: int = 60,
+        blue_threshold: int = 30,
+    ):
+        pixels = list(self.img.getdata())
+        # Calculate the average color
+        average_color = (
+            sum(pixel[0] for pixel in pixels) / len(pixels),
+            sum(pixel[1] for pixel in pixels) / len(pixels),
+            sum(pixel[2] for pixel in pixels) / len(pixels),
+        )
+
+        # Check if the average colors threshold
+        warm_color_condition = (
+            average_color[0] > red_threshold
+            and average_color[1] > green_threshold
+            and average_color[2] > blue_threshold
+        )
+
+        return warm_color_condition
 
     def close(self):
         try:
