@@ -28,7 +28,7 @@ jobs:
         run: poetry install
 
       - name: Lint
-        run: flake8 .
+        run: poetry run flake8 .
 
       - name: Test
         run: poetry run python ./tests/AvatarValidatorTests.py
